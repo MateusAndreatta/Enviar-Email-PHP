@@ -1,0 +1,27 @@
+<?PHP
+	$nome      = $_POST['nome'];
+	$sobrenome = $_POST['sobrenome'];
+	$email     = $_POST['email'];
+	$msg       = $_POST['msg'];
+	$assunto   = $_POST['assundo'];
+	
+	//tratando os codigos html
+	htmlspecialchars($nome);
+	htmlspecialchars($sobrenome);
+	htmlspecialchars($msg);
+	
+	$para = "email@exemplo.com";//email de quem vai receber
+	//Criando um corpo com todas as informações
+	$corpo ="Mensagem de Contato<br>";
+	$corpo .="<br>Nome: $nome";
+	$corpo .="<br>Sobrenome: $sobrenome";
+	$corpo .="<br>E-mail: $email";
+	$corpo .="<br>Assunto: $assunto";
+	$corpo .="<br>Mensagem: $msg";
+
+	$header = "Content-Type: text/html; charset=utf-8";//para o servidor de email receber os caracteres especiais
+	$header .= "From: $email Reply-to $email";
+	
+	mail($para,$assunto,$corpo,$header);	
+?>
+
